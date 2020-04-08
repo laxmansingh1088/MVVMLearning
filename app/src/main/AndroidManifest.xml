@@ -51,6 +51,14 @@
             android:name="rx_java.RxJavaActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="utils.WebviewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="retrofit.RetrofitActivity"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".broadcast.PhoneStateBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />

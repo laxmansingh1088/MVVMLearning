@@ -1,4 +1,100 @@
 <resources>
     <string name="app_name">MVVMLearning</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="map_rx_notes">RxJava Operators – Understanding Map, FlatMap, SwitchMap and ConcatMap\n\n\nIn short, Map, FlatMap, ConcatMap and SwitchMap applies a function or modifies the data emitted by an Observable.
+
+\n\nMap modifies each item emitted by a source Observable and emits the modified item.
+\n\nFlatMap, SwitchMap and ConcatMap also applies a function on each emitted item but instead of returning the modified item, it returns the Observable itself which can emit data again.
+\n\nFlatMap and ConcatMap work is pretty much same. They merges items emitted by multiple Observables and returns a single Observable.
+\n\nThe difference between FlatMap and ConcatMap is, the order in which the items are emitted.
+\n\nFlatMap can interleave items while emitting i.e the emitted items order is not maintained.
+\n\nConcatMap preserves the order of items. But the main disadvantage of ConcatMap is, it has to wait for each Observable to complete its work thus asynchronous is not maintained.
+\n\nSwitchMap is a bit different from FlatMap and ConcatMap. SwitchMap unsubscribe from previous source Observable whenever new item started emitting, thus always emitting the items from current Observable.
+
+
+    \n\n\n
+    1. Map()\n
+    Map operator transform each item emitted by an Observable and emits the modified item.
+    \n\n
+    Let’s say we have an Observable that makes a network call (assume the network call is made) and
+    emits the User objects with name and gender. But in our requirement we need an email address to
+    be present for each user, which is missing in the network response. Then we can alter each User
+    object by applying Map() operation.
+    \n\n
+    getUsersObservable() : assume this method is making a network call and fetching user objects.
+    This returns an Observable that emits User objects with name and gender.
+    \n\n
+    map() operator applies Function &lt;User, User&gt; on each User object and adds email address
+    and returns the modified User object.
+
+    \n\n\n
+
+    2. FlatMap()\n
+    To better understand FlatMap, consider a scenario where you have a network call to fetch Users
+    with name and gender. Then you have another network that gives you address of each user. Now the
+    requirement is to create an Observable that emits Users with name, gender and address
+    properties. To achieve this, you need to get the users first, then make separate network call
+    for each user to fetch his address. This can be done easily using FlatMap operator.
+    \n\n
+    getUsersObservable() : assume it makes a network call and returns an Observable that emits User
+    (name and gender) objects.
+    \n\n
+    getAddressObservable() : assume it makes another network call just to fetch user address. This
+    also returns an Observable that emits User by adding address node to existing name and gender.
+    \n\n
+    flatMap() operator makes getAddressObservable() call each time a User is emitted and returns an
+    Observable that emits User including the address filed.
+    \n\n
+    Finally flatMap() returns an Observable by merging two Observables together.
+    \n\n
+    Thread.sleep(sleepTime); added here to simulate network latency.
+
+    \n\n\n
+
+    3. ConcatMap()\n
+    Now consider the same example of FlatMap but replacing the operator with ConcatMap. Technically
+    the both operators produces the same output but the sequence the data emitted changes.
+    \n\n
+    ConcatMap() maintains the order of items and waits for the current Observable to complete its
+    job before emitting the next one.
+    \n\n
+    ConcatMap is more suitable when you want to maintain the order of execution.
+
+    \n\n\n
+
+    4. SwitchMap() \n
+    SwithMap() on the other hand is completely a different operator from FlatMap and ConcatMap.
+    SwitchMap always return the latest Observable and emits the items from it.
+
+
+    \n\n\n\n\n\n
+    Choosing between Map operators
+    \n\n
+    Consider using Map operator where there is an offline operations needs to be done on emitted
+    data. As explained in the article, we got something from server but that doesn’t fulfils our
+    requirement. In that case, Map can be used to alter the emitted data.
+    \n\n
+    Choose FlatMap when the order is not important. Let’s say you are building a Airline Ticket Fair
+    app that fetches the prices of each airline separately and display on the screen. For this both
+    FlatMap and ConcatMap can be used. But if the order is not important and want to send all the
+    network calls simultaneously, I would consider FlatMap over ConcatMap. If you consider ConcatMap
+    in this scenario, the time takes to fetch the prices takes very longer time as the ConcatMap
+    won’t make simultaneous calls in order to maintain item order.
+    \n\n
+    SwitchMap is best suited when you want to discard the response and consider the latest one.
+    Let’s say you are writing an Instant Search app which sends search query to server each time
+    user types something. In this case multiple requests will be sent to server with multiple
+    queries, but we want to show the result of latest typed query only. For this case, SwitchMap is
+    best operator to use.
+    \n\n
+    Another use case of SwitchMap is, you have a feed screen in which feed is refreshed each time
+    user perform pulldown to refresh. In this scenario, SwitchMap is best suited as it can ignores
+    the older feed response and consider only the latest request.
+
+</string>
+
+    <string name="loading">Loading...</string>
+
 </resources>

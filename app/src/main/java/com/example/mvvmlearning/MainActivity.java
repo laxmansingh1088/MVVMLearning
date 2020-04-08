@@ -36,6 +36,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import databinding.DataBindigActivity;
 import ebookshop_mvvm.activities.BooksActivity;
 import image_compress.ImageCompressActivity;
+import retrofit.RetrofitActivity;
 import room.activities.ContactsActivity;
 import rx_java.RxJavaActivity;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button ebook_shop;
     private Button image_compress;
     private Button btn_rxJava;
-    private Button btn_save_contact, btn_delete_contact;
+    private Button btn_save_contact, btn_delete_contact, btn_retrofit;
     PhoneStateBroadcastReceiver receiver;
 
     @Override
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         image_compress.setOnClickListener(this);
         btn_rxJava = findViewById(R.id.btn_rxJava);
         btn_rxJava.setOnClickListener(this);
+        btn_retrofit = findViewById(R.id.btn_retrofit);
+        btn_retrofit.setOnClickListener(this);
 
 
         LiveData<Integer> integerLiveData = mainActivityViewModel.getInitialCount();
@@ -163,6 +166,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_rxJava:
                 Intent rxIntent = new Intent(this, RxJavaActivity.class);
                 startActivity(rxIntent);
+                break;
+
+            case R.id.btn_retrofit:
+                Intent retrofitIntent = new Intent(this, RetrofitActivity.class);
+                startActivity(retrofitIntent);
                 break;
 
             default:
