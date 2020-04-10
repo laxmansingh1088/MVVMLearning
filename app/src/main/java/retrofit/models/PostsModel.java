@@ -11,6 +11,15 @@ public class PostsModel {
     @SerializedName("body")
     private String textBody;
 
+    public PostsModel() {
+    }
+
+    public PostsModel(String userId, String title, String textBody) {
+        this.userId = userId;
+        this.title = title;
+        this.textBody = textBody;
+    }
+
     public String getUserId() {
         return userId;
     }
