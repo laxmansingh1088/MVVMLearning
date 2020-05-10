@@ -160,11 +160,20 @@ public class Movies extends BaseObservable {
 
         @Override
         public boolean areContentsTheSame(@NonNull Movies oldItem, @NonNull Movies newItem) {
-            // to implement areContentsTheSame, we have to check each attribute and return the result as true or false.
-
-
-            // For the time being i am  returning it true.
-            return true;
+            return oldItem.popularity == newItem.popularity
+                    && oldItem.vote_count == newItem.vote_count
+                    && oldItem.video == newItem.video
+                    && oldItem.imageUrl.equals(newItem.imageUrl)
+                    && oldItem.id.equals(newItem.id)
+                    && oldItem.adult == newItem.adult
+                    && oldItem.backdrop_path.equals(newItem.backdrop_path)
+                    && oldItem.original_language.equals(newItem.popularity)
+                    && oldItem.original_title.equals(newItem.original_title)
+                    && oldItem.genre_ids.equals(newItem.genre_ids)
+                    && oldItem.title.equals(newItem.title)
+                    && oldItem.vote_average.equals(newItem.vote_average)
+                    && oldItem.overview.equals(newItem.overview)
+                    && oldItem.release_date.equals(newItem.release_date);
         }
     };
 }
