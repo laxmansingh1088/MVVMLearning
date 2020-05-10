@@ -9,36 +9,34 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.example.mvvmlearning.broadcast.PhoneStateBroadcastReceiver;
-import com.example.mvvmlearning.viewmodels.MainActivityViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.provider.ContactsContract;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.Switch;
-import android.widget.TextView;
+import com.example.mvvmlearning.broadcast.PhoneStateBroadcastReceiver;
+import com.example.mvvmlearning.viewmodels.MainActivityViewModel;
+import com.example.mvvmlearning.viewmodels.MainActivityViewModelFactory;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import android.provider.Contacts.People;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-
+import dagger_room_contacts.activities.ContactsDaggerActivity;
 import databinding.DataBindigActivity;
 import ebookshop_mvvm.activities.BooksActivity;
 import image_compress.ImageCompressActivity;
+import paging.PagingActivity;
 import retrofit.RetrofitActivity;
 import room.activities.ContactsActivity;
 import rx_java.RxJavaActivity;
+import temp_dagger.TempDaggerActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button ebook_shop;
     private Button image_compress;
     private Button btn_rxJava;
-    private Button btn_save_contact, btn_delete_contact, btn_retrofit;
+    private Button btn_save_contact, btn_delete_contact, btn_retrofit, temp_dagger, dagger_room_contacts, paging;
     PhoneStateBroadcastReceiver receiver;
 
     @Override
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        mainActivityViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(8)).get(MainActivityViewModel.class);
 
         txt_count = findViewById(R.id.txt_count);
         btn_room = findViewById(R.id.btn_room);
@@ -78,6 +76,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_rxJava.setOnClickListener(this);
         btn_retrofit = findViewById(R.id.btn_retrofit);
         btn_retrofit.setOnClickListener(this);
+        temp_dagger = findViewById(R.id.temp_dagger);
+        temp_dagger.setOnClickListener(this);
+        dagger_room_contacts = findViewById(R.id.dagger_room_contacts);
+        dagger_room_contacts.setOnClickListener(this);
+        paging = findViewById(R.id.paging);
+        paging.setOnClickListener(this);
 
 
         LiveData<Integer> integerLiveData = mainActivityViewModel.getInitialCount();
@@ -172,6 +176,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent retrofitIntent = new Intent(this, RetrofitActivity.class);
                 startActivity(retrofitIntent);
                 break;
+
+
+            case R.id.temp_dagger:
+                Intent tempdaggerIntent = new Intent(this, TempDaggerActivity.class);
+                startActivity(tempdaggerIntent);
+                break;
+
+
+            case R.id.dagger_room_contacts:
+                Intent daggerroomIntent = new Intent(this, ContactsDaggerActivity.class);
+                startActivity(daggerroomIntent);
+                break;
+
+            case R.id.paging:
+                Intent pagingIntent = new Intent(this, PagingActivity.class);
+                startActivity(pagingIntent);
+                break;
+
 
             default:
                 break;

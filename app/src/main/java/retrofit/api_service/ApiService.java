@@ -52,9 +52,7 @@ public interface ApiService {
     //Get request with multiple Query parameter
     // url:- https://jsonplaceholder.typicode.com/posts?userId=1&_id=id&_sort=desc
     @GET("posts")
-    Call<List<PostsModel>> getPosts(@Query("userId") int userId
-            , @Query("_sort") String id
-            , @Query("_order") String order);
+    Call<List<PostsModel>> getPosts(@Query("userId") int userId, @Query("_sort") String id, @Query("_order") String order);
 
     // if we have to pass null in int type of field change int --> Integer
     @GET("posts")

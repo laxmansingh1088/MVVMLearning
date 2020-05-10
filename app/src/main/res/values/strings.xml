@@ -2,6 +2,10 @@
     <string name="app_name">MVVMLearning</string>
     <string name="action_settings">Settings</string>
 
+    <string name="base_url">https://api.themoviedb.org/3/</string>
+    <string name="image_base_url">https://image.tmdb.org/t/p/w500/</string>
+    <string name="api_key">28a6e8342d06b1e48285ddb34f8a860c</string>
+
 
     <string name="map_rx_notes">RxJava Operators – Understanding Map, FlatMap, SwitchMap and ConcatMap\n\n\nIn short, Map, FlatMap, ConcatMap and SwitchMap applies a function or modifies the data emitted by an Observable.
 
@@ -96,5 +100,6 @@
 </string>
 
     <string name="loading">Loading...</string>
+    <string name="something_went_wrong">Something went wrong. Please try again.</string>
 
 </resources>

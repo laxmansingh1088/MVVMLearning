@@ -85,6 +85,7 @@ public class RetrofitActivity extends AppCompatActivity {
     public void simpleGetApi(ApiService apiService) {
         Call<List<PostsModel>> call = apiService.getAllPosts();
 
+
         call.enqueue(new Callback<List<PostsModel>>() {
             @Override
             public void onResponse(Call<List<PostsModel>> call, Response<List<PostsModel>> response) {
