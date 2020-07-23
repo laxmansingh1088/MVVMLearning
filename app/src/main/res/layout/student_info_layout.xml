@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="student"
+            name="studentt"
             type="databinding.models.StudentModel" />
 
     </data>
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="182dp"
-            android:text="@{student.studentName}"
+            android:text="@{studentt.studentName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="66dp"
-            android:text="@{student.studentEmail}"
+            android:text="@{studentt.studentEmail}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_student_name" />

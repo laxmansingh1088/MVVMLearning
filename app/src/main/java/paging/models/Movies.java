@@ -1,21 +1,14 @@
 package paging.models;
 
-import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
-import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.example.mvvmlearning.BR;
-import com.example.mvvmlearning.R;
 import com.google.gson.annotations.SerializedName;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import paging.adapters.MoviesAdapter;
 
 public class Movies extends BaseObservable {
 
@@ -175,5 +168,7 @@ public class Movies extends BaseObservable {
                     && oldItem.overview.equals(newItem.overview)
                     && oldItem.release_date.equals(newItem.release_date);
         }
+
+
     };
 }

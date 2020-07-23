@@ -2,9 +2,12 @@ package retrofit.api_service;
 
 import androidx.room.Delete;
 
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit.models.CommentsModel;
 import retrofit.models.PostsModel;
 import retrofit2.Call;
@@ -14,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -30,6 +34,12 @@ public interface ApiService {
     // url:- https://jsonplaceholder.typicode.com/posts
     @GET("posts")
     Call<List<PostsModel>> getAllPosts();
+
+    //Simple get request
+    // url:- https://jsonplaceholder.typicode.com/posts
+    @GET("{voipId}/extensions/{voipPhoneId}")
+    Call<String> getIncomingRules(@Path("voipId") int voipId, @Path("voipPhoneId") int voipPhoneId, @HeaderMap Map<String, String> headers);
+
 
     //Get request with path parameter
     // url:- https://jsonplaceholder.typicode.com/posts/2/comments

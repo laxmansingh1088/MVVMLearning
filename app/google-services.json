@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "244714515180",
+    "firebase_url": "https://mvvmlearning.firebaseio.com",
+    "project_id": "mvvmlearning",
+    "storage_bucket": "mvvmlearning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244714515180:android:5468a6325b3e59d6bcd3c9",
+        "android_client_info": {
+          "package_name": "com.example.mvvmlearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244714515180-q75q975ojn8uenhn29jc1q6ceshvks8j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mvvmlearning",
+            "certificate_hash": "538087515692c4d87e50536c44e27607a9fb383b"
+          }
+        },
+        {
+          "client_id": "244714515180-78dat6kn5oj20bot1lg4jqpqvnd6e5hr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6SQsruQbvrmMC0EXPSXcFd98xI0sQUZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244714515180-78dat6kn5oj20bot1lg4jqpqvnd6e5hr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

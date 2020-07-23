@@ -27,32 +27,52 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver {
         telephony.listen(customPhoneListener, PhoneStateListener.LISTEN_CALL_STATE); //Register our listener with TelephonyManager
 
         Bundle bundle = intent.getExtras();
-        String phoneNr = bundle.getString("incoming_number");
-        Log.v(TAG, "phoneNr: " + phoneNr);
         mContext = context;
 
-
-        if(intent.getAction().equals("android.intent.action.PHONE_STATE")){
-
-            String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-
-            if(state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)){
-                Log.d(TAG, "Inside Extra state off hook");
-                String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                Log.e(TAG, "rimpy1 : " + number);
+        if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
+            //outgoing call
+            if (intent.getAction().equals("android.intent.action.PHONE_STATE")) {
+                String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+                Log.d(TAG,"Phone State:--   "+ state.toString());
+                if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                    //  Extra state off hook
+                    String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+                    Log.e(TAG, "Number : " + number);
+                } else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                    // EXTRA_STATE_RINGING
+                    String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+                    Log.e(TAG, "Number : " + number);
+                } else if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+                    // EXTRA_STATE_IDLE
+                    String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+                    Log.e(TAG, "Number : " + number);
+                }
             }
+        } else if (intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER) != null) {
+            //incoming call
 
-            else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)){
-                Log.e(TAG, "Inside EXTRA_STATE_RINGING");
-                String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                Log.e(TAG, "rimpy2 : " + number);
-            }
-            else if(state.equals(TelephonyManager.EXTRA_STATE_IDLE)){
-                String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                Log.e(TAG, "rimpy3 : " + number);
-                Log.d(TAG, "Inside EXTRA_STATE_IDLE");
+            if (intent.getAction().equals("android.intent.action.PHONE_STATE")) {
+
+                String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+
+                Log.d(TAG,"Phone State:--   "+ state.toString());
+                if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+                    //   Extra state off hook
+                    String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                    Log.e(TAG, "Number : " + number);
+                } else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                    // EXTRA_STATE_RINGING
+                    String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                    Log.e(TAG, "Number : " + number);
+                } else if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
+                    // EXTRA_STATE_IDLE
+                    String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                    Log.e(TAG, "Number : " + number);
+                }
             }
         }
+
+
     }
 
     /* Custom PhoneStateListener */
@@ -78,7 +98,7 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver {
                     break;
 
                 case TelephonyManager.CALL_STATE_IDLE:
-                    deleteContact(mContext, "Phone by Web.com", "");
+                 //   deleteContact(mContext, "Phone by Web.com", "");
                     Log.d(TAG, "CALL_STATE_IDLE==>   " + incoming_number);
 
                     if ((prev_state == TelephonyManager.CALL_STATE_OFFHOOK)) {
@@ -160,7 +180,7 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver {
 
         // Create where condition clause.
         String displayName = givenName + " " + familyName;
-        String whereClause = ContactsContract.RawContacts.DISPLAY_NAME_SOURCE+ " = '" + displayName.trim() + "'";
+        String whereClause = ContactsContract.RawContacts.DISPLAY_NAME_SOURCE + " = '" + displayName.trim() + "'";
 
         // Query raw contact id through RawContacts uri.
         Uri rawContactUri = ContactsContract.RawContacts.CONTENT_URI;

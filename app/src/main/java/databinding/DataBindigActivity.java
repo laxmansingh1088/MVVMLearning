@@ -24,6 +24,7 @@ public class DataBindigActivity extends AppCompatActivity {
     private TextView tv_student_email;
     private ActivityDataBindingBinding activityDataBindingBinding;
     private ClickHandlers clickHandlers;
+    private StudentModel studentModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class DataBindigActivity extends AppCompatActivity {
 
 
     private StudentModel getStudent() {
-        StudentModel studentModel = new StudentModel("Laxman Singh", "lsingh@gmail.com");
+        studentModel = new StudentModel("Laxman Singh", "lsingh@gmail.com");
         return studentModel;
     }
 
@@ -63,6 +64,7 @@ public class DataBindigActivity extends AppCompatActivity {
 
         public void onEnrollButtonClicked(View view) {
             Toast.makeText(context, "Enroll Clicked", Toast.LENGTH_LONG).show();
+            studentModel.setStudentName("Rajan");
         }
 
         public void onCancelButtonClicked(View view) {

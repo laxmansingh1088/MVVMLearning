@@ -12,11 +12,14 @@ import com.example.mvvmlearning.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit.api_service.ApiService;
 import retrofit.models.CommentsModel;
 import retrofit.models.PostsModel;
@@ -25,12 +28,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitActivity extends AppCompatActivity {
     private Context mContext;
     private TextView tv_result;
     // Base url must end with slash other wise it will crash...
     public static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    public static final String URL = "https://api.phone.com/v4/accounts/";
 
 
     /*
@@ -53,8 +58,8 @@ public class RetrofitActivity extends AppCompatActivity {
         Gson gson = new GsonBuilder().serializeNulls().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
@@ -78,7 +83,34 @@ public class RetrofitActivity extends AppCompatActivity {
         // createPATCHApi(apiService);
 
         /* DELETE type of apis */
-        createDeleteApi(apiService);
+        //  createDeleteApi(apiService);
+        simpleGetApiii(apiService);
+    }
+
+
+    public void simpleGetApiii(ApiService apiService) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("Authorization", "Bearer y463%w4kCyx7F4k4");
+        params.put("Content-Type", "application/json");
+        Call<String> call = apiService.getIncomingRules(802967, 1984504, params);
+
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    tv_result.setText("Code:  " + response.code());
+                    return;
+                } else {
+                    tv_result.append(response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

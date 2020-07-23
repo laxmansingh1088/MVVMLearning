@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -31,6 +32,7 @@ android {
 
 dependencies {
 
+    implementation 'androidx.work:work-runtime:2.3.4'
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
     def room_version = "2.2.4"
@@ -70,6 +72,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
 
+    // Retrofit Scalars Converter
+    compile 'com.squareup.retrofit2:converter-scalars:2.5.0'
+
 
 // Dagger
     api 'com.google.dagger:dagger:2.27'
@@ -78,5 +83,11 @@ dependencies {
 
 // Paging
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+
+    implementation 'com.google.firebase:firebase-analytics:17.4.4'
+
+    // Add the SDK for Firebase Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:20.2.3'
 
 }
