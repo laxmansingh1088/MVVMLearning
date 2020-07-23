@@ -26,53 +26,6 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver {
         CustomPhoneStateListener customPhoneListener = new CustomPhoneStateListener();
         telephony.listen(customPhoneListener, PhoneStateListener.LISTEN_CALL_STATE); //Register our listener with TelephonyManager
 
-        Bundle bundle = intent.getExtras();
-        mContext = context;
-
-        if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
-            //outgoing call
-            if (intent.getAction().equals("android.intent.action.PHONE_STATE")) {
-                String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-                Log.d(TAG,"Phone State:--   "+ state.toString());
-                if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
-                    //  Extra state off hook
-                    String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-                    Log.e(TAG, "Number : " + number);
-                } else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-                    // EXTRA_STATE_RINGING
-                    String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-                    Log.e(TAG, "Number : " + number);
-                } else if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
-                    // EXTRA_STATE_IDLE
-                    String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-                    Log.e(TAG, "Number : " + number);
-                }
-            }
-        } else if (intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER) != null) {
-            //incoming call
-
-            if (intent.getAction().equals("android.intent.action.PHONE_STATE")) {
-
-                String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-
-                Log.d(TAG,"Phone State:--   "+ state.toString());
-                if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
-                    //   Extra state off hook
-                    String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                    Log.e(TAG, "Number : " + number);
-                } else if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-                    // EXTRA_STATE_RINGING
-                    String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                    Log.e(TAG, "Number : " + number);
-                } else if (state.equals(TelephonyManager.EXTRA_STATE_IDLE)) {
-                    // EXTRA_STATE_IDLE
-                    String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                    Log.e(TAG, "Number : " + number);
-                }
-            }
-        }
-
-
     }
 
     /* Custom PhoneStateListener */
