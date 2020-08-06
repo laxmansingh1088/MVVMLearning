@@ -40,6 +40,7 @@ import dagger_room_contacts.activities.ContactsDaggerActivity;
 import databinding.DataBindigActivity;
 import ebookshop_mvvm.activities.BooksActivity;
 import image_compress.ImageCompressActivity;
+import notifications.NotificationSampleActivity;
 import paging.PagingActivity;
 import retrofit.RetrofitActivity;
 import room.activities.ContactsActivity;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button ebook_shop;
     private Button image_compress;
     private Button btn_rxJava;
-    private Button btn_save_contact, btn_delete_contact, btn_retrofit, temp_dagger, dagger_room_contacts, paging;
+    private Button btn_save_contact, btn_delete_contact, btn_retrofit, temp_dagger, dagger_room_contacts, paging, notification;
     PhoneStateBroadcastReceiver receiver;
 
     @Override
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dagger_room_contacts.setOnClickListener(this);
         paging = findViewById(R.id.paging);
         paging.setOnClickListener(this);
+        notification = findViewById(R.id.notification);
+        notification.setOnClickListener(this);
 
 
         LiveData<Integer> integerLiveData = mainActivityViewModel.getInitialCount();
@@ -220,6 +223,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(pagingIntent);
                 break;
 
+            case R.id.notification:
+                Intent notificationIntent = new Intent(this, NotificationSampleActivity.class);
+                startActivity(notificationIntent);
+                break;
 
             default:
                 break;

@@ -77,6 +77,10 @@
             android:name="paging.PagingActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="notifications.NotificationSampleActivity"
+            android:screenOrientation="portrait" />
+
 
         <receiver
             android:name=".broadcast.PhoneStateBroadcastReceiver"
@@ -98,6 +102,21 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
+        <receiver
+            android:name="notifications.broadcast.NotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="ACCEPT_ACTION" />
+                <action android:name="HANGUP_ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Declare foreground service -->
+        <service
+            android:name="notifications.service.MyForeGroundService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
