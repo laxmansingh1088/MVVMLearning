@@ -3,6 +3,10 @@
     package="com.example.mvvmlearning">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <!--<uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -81,6 +85,11 @@
             android:name="notifications.NotificationSampleActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="hilt_with_mvvm.activities.HiltMVVMActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
 
         <receiver
             android:name=".broadcast.PhoneStateBroadcastReceiver"
@@ -117,6 +126,14 @@
             android:name="notifications.service.MyForeGroundService"
             android:enabled="true"
             android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/maps_api_key" />
     </application>
 
 </manifest>

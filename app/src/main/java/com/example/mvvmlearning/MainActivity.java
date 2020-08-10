@@ -24,7 +24,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.mvvmlearning.broadcast.PhoneStateBroadcastReceiver;
@@ -56,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button ebook_shop;
     private Button image_compress;
     private Button btn_rxJava;
-    private Button btn_save_contact, btn_delete_contact, btn_retrofit, temp_dagger, dagger_room_contacts, paging, notification;
+    private Button btn_save_contact, btn_delete_contact, btn_retrofit, temp_dagger,
+            dagger_room_contacts, paging, notification, hilt_mvvm;
     PhoneStateBroadcastReceiver receiver;
 
     @Override
@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
 
 
-        mainActivityViewModel = ViewModelProviders.of(this, new MainActivityViewModelFactory(8)).get(MainActivityViewModel.class);
+        mainActivityViewModel = ViewModelProviders.of(this,
+                new MainActivityViewModelFactory(8)).get(MainActivityViewModel.class);
 
         txt_count = findViewById(R.id.txt_count);
         btn_room = findViewById(R.id.btn_room);
@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         paging.setOnClickListener(this);
         notification = findViewById(R.id.notification);
         notification.setOnClickListener(this);
+        hilt_mvvm = findViewById(R.id.hilt_mvvm);
+        hilt_mvvm.setOnClickListener(this);
 
 
         LiveData<Integer> integerLiveData = mainActivityViewModel.getInitialCount();
@@ -226,6 +228,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.notification:
                 Intent notificationIntent = new Intent(this, NotificationSampleActivity.class);
                 startActivity(notificationIntent);
+                break;
+
+            case R.id.hilt_mvvm:
+                Intent hiltIntent = new Intent(this, HiltMVVMActivity.class);
+                startActivity(hiltIntent);
                 break;
 
             default:

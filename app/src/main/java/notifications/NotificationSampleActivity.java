@@ -4,16 +4,21 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 
 import com.example.mvvmlearning.R;
+import com.example.utility.utils.Utils;
 
 import notifications.broadcast.NotificationReceiver;
 import notifications.constants.AppConstants;
@@ -56,6 +61,7 @@ public class NotificationSampleActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void sendOnChannel1(View v) {
         String title = editTextTitle.getText().toString();
         String message = editTextMessage.getText().toString();
@@ -86,8 +92,8 @@ public class NotificationSampleActivity extends AppCompatActivity {
                 .setContentIntent(contentIntent)
                 .setAutoCancel(false)
                 .setOnlyAlertOnce(true)
-                .addAction(R.mipmap.ic_launcher, "Accept", pendingIntentAccept)
-                .addAction(R.drawable.notification, "Hangup", pendingIntentHangup)
+                .addAction(R.mipmap.ic_launcher, HtmlCompat.fromHtml("<font color=\"" + ContextCompat.getColor(this, R.color.call_accept_color) + "\">" + this.getString(R.string.accept) + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY), pendingIntentAccept)
+                .addAction(R.drawable.notification, HtmlCompat.fromHtml("<font color=\"" + ContextCompat.getColor(this, R.color.call_decline_color) + "\">" + this.getString(R.string.hangup) + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY), pendingIntentHangup)
                 .build();
         notificationManager.notify(1, notification);
     }
