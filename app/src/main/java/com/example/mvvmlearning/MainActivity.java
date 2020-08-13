@@ -231,8 +231,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.hilt_mvvm:
-                Intent hiltIntent = new Intent(this, HiltMVVMActivity.class);
-                startActivity(hiltIntent);
+            /*    Intent hiltIntent = new Intent(this, HiltMVVMActivity.class);
+                startActivity(hiltIntent);*/
                 break;
 
             default:

@@ -83,13 +83,14 @@
 
         <activity
             android:name="notifications.NotificationSampleActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="hilt_with_mvvm.activities.HiltMVVMActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!--<activity
+            android:name="hilt_with_mvvm.activities.HiltMVVMActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+-->
 
         <receiver
             android:name=".broadcast.PhoneStateBroadcastReceiver"

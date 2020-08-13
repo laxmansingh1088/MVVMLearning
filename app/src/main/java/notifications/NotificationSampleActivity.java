@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 
 import com.example.mvvmlearning.R;
-import com.example.utility.utils.Utils;
 
 import notifications.broadcast.NotificationReceiver;
 import notifications.constants.AppConstants;
@@ -90,9 +89,10 @@ public class NotificationSampleActivity extends AppCompatActivity {
                 .setColor(Color.BLUE)
                 .setOngoing(true)
                 .setContentIntent(contentIntent)
-                .setAutoCancel(false)
+                .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .addAction(R.mipmap.ic_launcher, HtmlCompat.fromHtml("<font color=\"" + ContextCompat.getColor(this, R.color.call_accept_color) + "\">" + this.getString(R.string.accept) + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY), pendingIntentAccept)
+                .setContentIntent(pendingIntentAccept)
                 .addAction(R.drawable.notification, HtmlCompat.fromHtml("<font color=\"" + ContextCompat.getColor(this, R.color.call_decline_color) + "\">" + this.getString(R.string.hangup) + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY), pendingIntentHangup)
                 .build();
         notificationManager.notify(1, notification);
